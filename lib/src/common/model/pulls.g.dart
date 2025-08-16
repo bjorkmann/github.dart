@@ -183,7 +183,15 @@ PullRequestComment _$PullRequestCommentFromJson(Map<String, dynamic> json) =>
       pullRequestUrl: json['pull_request_url'] as String?,
       links: json['_links'] == null
           ? null
-          : Links.fromJson(json['_links'] as Map<String, dynamic>),
+          : ReviewLinks.fromJson(json['_links'] as Map<String, dynamic>),
+      line: (json['line'] as num?)?.toInt(),
+      originalLine: (json['original_line'] as num?)?.toInt(),
+      startLine: (json['start_line'] as num?)?.toInt(),
+      originalStartLine: (json['original_start_line'] as num?)?.toInt(),
+      side: json['side'] as String?,
+      startSide: json['start_side'] as String?,
+      inReplyToId: (json['in_reply_to_id'] as num?)?.toInt(),
+      pullRequestReviewId: (json['pull_request_review_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PullRequestCommentToJson(PullRequestComment instance) =>
@@ -202,6 +210,14 @@ Map<String, dynamic> _$PullRequestCommentToJson(PullRequestComment instance) =>
       'url': instance.url,
       'pull_request_url': instance.pullRequestUrl,
       '_links': instance.links,
+      'line': instance.line,
+      'original_line': instance.originalLine,
+      'start_line': instance.startLine,
+      'original_start_line': instance.originalStartLine,
+      'side': instance.side,
+      'start_side': instance.startSide,
+      'in_reply_to_id': instance.inReplyToId,
+      'pull_request_review_id': instance.pullRequestReviewId,
     };
 
 CreatePullRequestComment _$CreatePullRequestCommentFromJson(

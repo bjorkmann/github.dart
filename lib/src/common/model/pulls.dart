@@ -236,6 +236,14 @@ class PullRequestComment {
     this.url,
     this.pullRequestUrl,
     this.links,
+    this.line,
+    this.originalLine,
+    this.startLine,
+    this.originalStartLine,
+    this.side,
+    this.startSide,
+    this.inReplyToId,
+    this.pullRequestReviewId,
   });
 
   int? id;
@@ -252,7 +260,40 @@ class PullRequestComment {
   String? url;
   String? pullRequestUrl;
   @JsonKey(name: '_links')
-  Links? links;
+  ReviewLinks? links;
+  
+  /// The line of the blob to which the comment applies. The last line of the range
+  /// for a multi-line comment
+  int? line;
+  
+  /// The line of the blob to which the comment applies. The last line of the range
+  /// for a multi-line comment
+  @JsonKey(name: 'original_line')
+  int? originalLine;
+  
+  /// The first line of the range for a multi-line comment.
+  @JsonKey(name: 'start_line')
+  int? startLine;
+  
+  /// The first line of the range for a multi-line comment.
+  @JsonKey(name: 'original_start_line')
+  int? originalStartLine;
+  
+  /// The side of the diff to which the comment applies. The side of the last line
+  /// of the range for a multi-line comment
+  String? side;
+  
+  /// The side of the first line of the range for a multi-line comment.
+  @JsonKey(name: 'start_side')
+  String? startSide;
+  
+  /// The comment ID to reply to.
+  @JsonKey(name: 'in_reply_to_id')
+  int? inReplyToId;
+  
+  /// The ID of the pull request review to which the comment belongs.
+  @JsonKey(name: 'pull_request_review_id')
+  int? pullRequestReviewId;
 
   factory PullRequestComment.fromJson(Map<String, dynamic> input) =>
       _$PullRequestCommentFromJson(input);
